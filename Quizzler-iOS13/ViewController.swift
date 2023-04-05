@@ -10,21 +10,38 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let quiz=[["Four + Two is equal to Six","True"],["Five - Three is greater than One","True"],["Three + Eight is less than Ten","False"]]
+    
+    var questionNumber=0
+    
+    
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        questionLabel.text="Four + Two is equal to Six"
+        updateUI()
     }
-
+    
     
     @IBAction func answerButtonPressed(_ sender: UIButton) {
-        print(sender.currentTitle!)
+        let userAnswer=sender.currentTitle! //True, False
+        let actualAnswer=quiz[questionNumber][1]
+        userAnswer==actualAnswer ? print("Right!"):print("Wrong!")
+        if(quiz.count>questionNumber+1){
+            questionNumber+=1
+        }else{questionNumber=0}
+        
+        updateUI()
+        
     }
     
+    func updateUI(){
+        questionLabel.text=quiz[questionNumber][0]
+    }
 }
 
