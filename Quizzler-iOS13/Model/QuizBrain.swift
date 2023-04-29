@@ -41,10 +41,15 @@ struct QuizBrain{
     mutating func updateQuestion(){
         if(quiz.count>questionNumber+1){
             questionNumber+=1
-        }else{questionNumber=0; score=0}
+        }else{reset()}
     }
     
     func getCurrentQuestionText()->String{
         return quiz[questionNumber].text
+    }
+    
+    mutating func reset(){
+        score=0
+        questionNumber=0
     }
 }

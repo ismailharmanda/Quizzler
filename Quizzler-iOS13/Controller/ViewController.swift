@@ -36,6 +36,7 @@ class ViewController: UIViewController {
         let isAnswerCorrect=quizBrain.checkAnswer(userAnswer)
         trueButton.isEnabled=false
         falseButton.isEnabled=false
+        quizBrain.updateQuestion()
         timer=Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats: false)
         
         if(isAnswerCorrect){
@@ -46,7 +47,6 @@ class ViewController: UIViewController {
     
     @objc func updateUI(){
         progressBar.progress=quizBrain.getProgress()
-        quizBrain.updateQuestion()
         questionLabel.text=quizBrain.getCurrentQuestionText()
         scoreLabel.text="Score: \(quizBrain.score)"
         trueButton.backgroundColor=UIColor.clear
