@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
+    
+    @IBOutlet weak var answerButton1: UIButton!
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
     
@@ -36,6 +38,7 @@ class ViewController: UIViewController {
         let isAnswerCorrect=quizBrain.checkAnswer(userAnswer)
         trueButton.isEnabled=false
         falseButton.isEnabled=false
+        answerButton1.isEnabled=false
         quizBrain.updateQuestion()
         timer=Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats: false)
         
@@ -49,10 +52,15 @@ class ViewController: UIViewController {
         progressBar.progress=quizBrain.getProgress()
         questionLabel.text=quizBrain.getCurrentQuestionText()
         scoreLabel.text="Score: \(quizBrain.score)"
+        answerButton1.setTitle(quizBrain.getChoice(c: 0), for: .normal)
+        trueButton.setTitle(quizBrain.getChoice(c: 1), for: .normal)
+        falseButton.setTitle(quizBrain.getChoice(c: 2), for: .normal)
         trueButton.backgroundColor=UIColor.clear
         falseButton.backgroundColor=UIColor.clear
+        answerButton1.backgroundColor=UIColor.clear
         trueButton.isEnabled=true
         falseButton.isEnabled=true
+        answerButton1.isEnabled=true
     }
 }
 
