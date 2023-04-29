@@ -31,4 +31,18 @@ struct QuizBrain{
             return true
         } else {return false}
     }
+    
+    func getProgress()->Float{
+       return Float(questionNumber)/Float(quiz.count)
+    }
+    
+    mutating func updateQuestion(){
+        if(quiz.count>questionNumber+1){
+            questionNumber+=1
+        }else{questionNumber=0}
+    }
+    
+    func getCurrentQuestion()->Question{
+        return quiz[questionNumber]
+    }
 }
